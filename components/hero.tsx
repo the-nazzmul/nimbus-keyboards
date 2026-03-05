@@ -1,11 +1,17 @@
+"use client";
+
+import { Canvas } from "@react-three/fiber";
 import { Bounded } from "./bounded";
+import Scene from "./scene";
 
 const Hero = () => {
   return (
     <section className="blue-gradient-bg relative h-dvh text-white text-shadow-black/30 text-shadow-lg">
-      {/* background image */}
+      {/* Canvas */}
       <div className="hero-scene pointer-events-none sticky top-0 h-dvh w-full">
-        {/* Canvas */}
+        <Canvas>
+          <Scene />
+        </Canvas>
       </div>
       <div className="hero-content absolute inset-x-0 top-0 h-dvh">
         <Bounded

@@ -14,14 +14,15 @@ const CustomKeycaps = () => {
   const [selectedTextureId, setSelectedTextureId] = useState(
     KEYCAP_TEXTURES[0].id,
   );
-  const [backgroundTexture, setBackgroundTexture] = useState(
-    KEYCAP_TEXTURES[0].name,
-  );
+  const [backgroundText, setBackgroundText] = useState(KEYCAP_TEXTURES[0].name);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const handleTextureSelect = (texture: KeycapTexture) => {
     if (texture.id === selectedTextureId || isAnimating) return;
     setSelectedTextureId(texture.id);
+    setBackgroundText(
+      KEYCAP_TEXTURES.find((t) => t.id === texture.id)?.name || "",
+    );
   };
 
   const handleAnimationComplete = useCallback(() => {
@@ -31,6 +32,25 @@ const CustomKeycaps = () => {
   return (
     <section className="relative flex h-[90vh] flex-col overflow-hidden bg-linear-to-b from-[#0f172a] to-[#062f4a] text-white">
       {/* SVG Background */}
+      <svg
+        className="pointer-events-none absolute top-0 left-0 h-auto w-full mix-blend-overlay"
+        viewBox="0 0 75 100"
+      >
+        <text
+          fontSize={7}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          x="50%"
+          y="50%"
+          className="font-black-slanted fill-white/20 uppercase group-hover:fill-white/30 motion-safe:transition-all motion-safe:duration-700"
+        >
+          {Array.from({ length: 20 }, (_, i) => (
+            <tspan key={i} x={`${(i + 1) * 10}`} dy={i === 0 ? -50 : 6}>
+              {Array.from({ length: 10 }, () => backgroundText).join(" ")}
+            </tspan>
+          ))}
+        </text>
+      </svg>
       {/* Canvas */}
       <Canvas
         camera={{ position: [0, 0.5, 0.5], fov: 45, zoom: 1.5 }}

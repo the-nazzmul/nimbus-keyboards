@@ -1,8 +1,9 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { Bounded } from "./bounded";
-import Scene from "./scene";
+import Scene from "../scene";
+import { Bounded } from "../bounded";
+
 
 const Hero = () => {
   return (

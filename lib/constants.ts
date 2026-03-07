@@ -24,7 +24,7 @@ export const BENTO_BOX_FEATURES = [
     size: "medium",
   },
   {
-    title: "Custom Nimbus Keycap Profile.",
+    title: "Custom SwitchBliss Keycap Profile.",
     description: "Designed for long coding sessions.",
     image: "/renders/render_11_2.png",
     size: "small",

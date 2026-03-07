@@ -10,7 +10,7 @@ const robotoFlex = Roboto_Flex({
 });
 
 export const metadata: Metadata = {
-  title: "Nimbus Keyboards",
+  title: "SwitchBliss Keyboards",
   description: "Pretty cool keyboards",
 };
 
@@ -21,9 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${robotoFlex.variable} antialiased`}>
-        {children}
-      </body>
+      <body className={`${robotoFlex.variable} antialiased`}>{children}</body>
     </html>
   );
 }

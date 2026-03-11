@@ -1,7 +1,8 @@
+import { useThree } from "@react-three/fiber";
 import { Stage, useTexture } from "@react-three/drei";
 import { Keyboard } from "./keyboard";
 import { KEYCAP_TEXTURES } from "@/lib/constants";
-import { useMemo, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -21,6 +22,13 @@ const SceneCustomKeycaps = ({
   const texturePaths = KEYCAP_TEXTURES.map((texture) => texture.path);
   const textures = useTexture(texturePaths);
   const [currentTextureId, setCurrentTextureId] = useState(selectedTextureId);
+  const { camera, size } = useThree();
+
+  useLayoutEffect(() => {
+    const isNarrow = size.width < 768;
+    camera.zoom = isNarrow ? 1.0 : 1.5;
+    camera.updateProjectionMatrix();
+  }, [camera, size.width, size.height]);
 
   useGSAP(() => {
     // Keyboard animation

@@ -56,7 +56,7 @@ const CustomKeycaps = () => {
       {/* Canvas */}
       <Canvas
         camera={{ position: [0, 0.5, 0.5], fov: 45, zoom: 1.5 }}
-        className="-md-[10vh] grow"
+        className="-md-[10vh] min-h-[20vh] grow"
       >
         <SceneCustomKeycaps
           selectedTextureId={selectedTextureId}
@@ -76,7 +76,8 @@ const CustomKeycaps = () => {
             your keyboard&apos;s appearance in real-time.
           </p>
         </div>
-        <ul className="grid grow grid-cols-2 gap-3 rounded-2xl bg-white p-4 text-black shadow-lg sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="max-md:max-h-[45vh] max-md:overflow-y-auto max-md:overflow-x-hidden min-h-0">
+          <ul className="grid grow grid-cols-2 gap-3 rounded-2xl bg-white p-4 text-black shadow-lg sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-3 xl:grid-cols-6">
           {KEYCAP_TEXTURES.map((texture) => (
             <li key={texture.id}>
               <button
@@ -105,7 +106,8 @@ const CustomKeycaps = () => {
               </button>
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
       </Bounded>
     </section>
   );

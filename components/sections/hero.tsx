@@ -3,8 +3,35 @@
 import { Canvas } from "@react-three/fiber";
 import SceneHero from "../scene-hero";
 import { Bounded } from "../bounded";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(useGSAP, SplitText);
 
 const Hero = () => {
+  useGSAP(() => {
+    const split = SplitText.create(".hero-heading", {
+      type: "chars,lines",
+      mask: "lines",
+      linesClass: "line++",
+    });
+
+    const tl = gsap.timeline({ delay: 4.2 });
+
+    tl.from(split.chars, {
+      opacity: 0,
+      y: -120,
+      ease: "back",
+      duration: 0.4,
+      stagger: 0.07,
+    }).to(".hero-body", {
+      opacity: 1,
+      duration: 0.6,
+      ease: "power2.out",
+    });
+  });
+
   return (
     <section className="blue-gradient-bg relative h-dvh text-white text-shadow-black/30 text-shadow-lg">
       {/* Canvas */}
@@ -18,13 +45,13 @@ const Hero = () => {
           fullWidth
           className="absolute inset-x-0 top-18 right-0 md:top-24 md:left-[8vw]"
         >
-          <h1 className="hero-heading font-black-slanted pl-1 text-6xl leading-[0.8] uppercase sm:text-7xl lg:text-8xl">
+          <h1 className="hero-heading font-black-slanted text-6xl leading-[0.8] uppercase sm:text-7xl lg:text-8xl">
             Built for <br /> the Bold
           </h1>
         </Bounded>
         <Bounded
           fullWidth
-          className="hero-body absolute inset-x-0 bottom-0 md:right-[8vw] md:left-auto"
+          className="hero-body absolute inset-x-0 bottom-0 opacity-0 md:right-[8vw] md:left-auto"
           innerClassName="flex flex-col gap-3"
         >
           <div className="max-w-md">

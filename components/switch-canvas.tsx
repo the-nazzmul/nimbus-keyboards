@@ -1,10 +1,12 @@
 "use client";
 
-import { SWITCHES } from "@/lib/constants";
+import { SOUND_MAP, SWITCHES } from "@/lib/constants";
 import { Canvas } from "@react-three/fiber";
 import clsx from "clsx";
 import { Switch } from "./switch";
 import { Stage } from "@react-three/drei";
+import gsap from "gsap";
+import { LuVolume2 } from "react-icons/lu";
 
 type SwitchData = (typeof SWITCHES)[number];
 
@@ -25,9 +27,27 @@ const SwitchCanvas = ({ switchData }: SwitchCanvasProps) => {
     black: "bg-gray-900",
   }[colorName];
 
+  const handleSound = () => {
+    const selectedSound = gsap.utils.random(
+      SOUND_MAP[colorName as keyof typeof SOUND_MAP],
+    );
+    const audio = new Audio(selectedSound);
+    audio.volume = 0.6;
+    audio.play();
+  };
+
   return (
     <div className="group relative min-h-96 overflow-hidden rounded-3xl select-none">
       {/* Text button */}
+
+      <button
+        onClick={handleSound}
+        className="font-bold-slanted absolute bottom-0 left-0 z-10 flex items-center gap-3 p-6 text-4xl text-white uppercase focus:ring-2 focus:ring-white focus:outline-none"
+      >
+        {name}
+        <LuVolume2 />
+      </button>
+
       {/* Canvas */}
       <Canvas camera={{ position: [1.5, 2, 0], fov: 7 }}>
         <Stage
@@ -43,6 +63,7 @@ const SwitchCanvas = ({ switchData }: SwitchCanvasProps) => {
           />
         </Stage>
       </Canvas>
+      {/* Background text */}
       <div
         className={clsx(
           "font-black-slanted absolute inset-0 -z-10 grid place-items-center text-8xl uppercase",

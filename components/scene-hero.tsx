@@ -42,6 +42,13 @@ const SceneHero = () => {
       ease: "power2.inOut",
     });
 
+    if (typeof window !== "undefined") {
+      const initialScrollY = window.scrollY;
+      if (initialScrollY === 0) {
+        document.body.style.overflow = "hidden";
+      }
+    }
+
     tl.to(keyboard.position, {
       x: 0,
       y: -0.5,
@@ -76,6 +83,10 @@ const SceneHero = () => {
         "<",
       )
       .call(() => {
+        if (typeof window !== "undefined") {
+          document.body.style.overflow = "";
+        }
+
         const keycaps = keycapRef.current;
 
         if (!keyboard || !keycaps) return;

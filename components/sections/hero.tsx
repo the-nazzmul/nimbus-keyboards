@@ -6,8 +6,9 @@ import { Bounded } from "../bounded";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(useGSAP, SplitText);
+gsap.registerPlugin(useGSAP, SplitText, ScrollTrigger);
 
 const Hero = () => {
   useGSAP(() => {
@@ -30,10 +31,28 @@ const Hero = () => {
       duration: 0.6,
       ease: "power2.out",
     });
+
+    gsap.fromTo(
+      ".hero-scene",
+      {
+        background:
+          "linear-gradient(to bottom, #000000, #0f172a, #062f4a, #7fa0b9)",
+      },
+      {
+        background:
+          "linear-gradient(to bottom, #000000, #0f172a, #062f4a, #7fa0b9)",
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "50% bottom",
+          scrub: 1,
+        },
+      },
+    );
   });
 
   return (
-    <section className="hero blue-gradient-bg relative h-dvh text-white text-shadow-black/30 text-shadow-lg motion-safe:h-[300vh]">
+    <section className="hero relative h-dvh text-white text-shadow-black/30 text-shadow-lg motion-safe:h-[300vh]">
       {/* Canvas */}
       <div className="hero-scene pointer-events-none sticky top-0 h-dvh w-full">
         <Canvas shadows="soft">

@@ -4,9 +4,15 @@ import clsx from "clsx";
 import { Bounded } from "../bounded";
 import { FadeIn } from "../fade-in";
 import { LuChevronRight, LuLoader } from "react-icons/lu";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 const PurchaseButton = () => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
   const [isPressed, setIsPressed] = useState(false);
 
   const handlePurchaseClick = async () => {
@@ -15,6 +21,54 @@ const PurchaseButton = () => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setIsPressed(false);
   };
+
+  useGSAP(() => {
+    if (!buttonRef.current || !textRef.current) return;
+
+    const handleMouseMove = (event: MouseEvent): void => {
+      if (!buttonRef.current || !textRef.current) return;
+      const buttonRect = buttonRef.current.getBoundingClientRect();
+      const mouseX = event.clientX - buttonRect.left;
+      const buttonWidth = buttonRect.width;
+
+      const normalizedX = Math.max(0, Math.min(1, mouseX / buttonWidth));
+
+      const newWdth = 120 - normalizedX * 70; //120 = thinner, 50 = wider
+      const newWght = 700 + normalizedX * 300; //700 == lighter, 1000 == bolder
+
+      gsap.to(textRef.current, {
+        "--wdth": newWdth,
+        "--wght": newWght,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    };
+
+    const handleMouseLeave = (): void => {
+      if (!textRef.current) return;
+
+      gsap.to(textRef.current, {
+        "--wdth": 85,
+        "--wght": 850,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+    };
+
+    buttonRef.current?.addEventListener("mousemove", handleMouseMove);
+    buttonRef.current?.addEventListener("mouseleave", handleMouseLeave);
+
+    gsap.set(textRef.current, {
+      "--wght": 850,
+    });
+
+    return () => {
+      if (buttonRef.current) {
+        buttonRef.current?.removeEventListener("mousemove", handleMouseMove);
+        buttonRef.current?.removeEventListener("mouseleave", handleMouseLeave);
+      }
+    };
+  });
 
   return (
     <Bounded>
@@ -29,6 +83,7 @@ const PurchaseButton = () => {
           Order Yours Now
         </h2>
         <button
+          ref={buttonRef}
           onClick={handlePurchaseClick}
           disabled={isPressed}
           className={clsx(
@@ -42,7 +97,11 @@ const PurchaseButton = () => {
         >
           <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/40 to-transparent ease-out group-hover:translate-x-full motion-safe:transition-transform motion-safe:duration-1000" />
           <div className="relative z-10 flex items-center justify-center gap-6 md:gap-8">
-            <span className="font-black-slanted text-4xl tracking-wide text-gray-900 uppercase group-hover:-translate-y-1 motion-safe:transition-transform motion-safe:duration-300 md:text-7xl lg:text-9xl">
+            <span
+              ref={textRef}
+              style={{ "--wdth": 85, "--wght": 850 } as React.CSSProperties}
+              className="font-black-slanted text-4xl tracking-wide text-gray-900 uppercase group-hover:-translate-y-1 motion-safe:transition-transform motion-safe:duration-300 md:text-7xl lg:text-9xl"
+            >
               {isPressed ? (
                 <span className="flex items-center gap-4 md:gap-6">
                   <LuLoader className="size-12 animate-spin text-gray-900 md:size-16" />

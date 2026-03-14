@@ -107,3 +107,17 @@ export const MARQUEE_PHRASES = [
   "Built to last",
   "Precision Crafting",
 ];
+
+export const PRODUCT_INFO = {
+  id: "vapor75",
+  name: "Vapor75",
+  description:
+    "The Vapor75 is a premium 75% mechanical keyboard built for users who care about performance and aesthetics. With hot-swappable switches, seamless wireless connectivity, and a knurled aluminum knob, it's engineered to feel as good as it looks. Its sleek, low-profile case and diffused metal finish give it a distinct visual identity on any desk. Designed by SwitchBliss, the Vapor75 blends high-end materials with playful customization to elevate your workflow.",
+  price: 9999,
+  image: "/renders/render_2.png",
+};
+
+export const PRODUCTS_BY_ID: Record<string, typeof PRODUCT_INFO> = {
+  [PRODUCT_INFO.id]: PRODUCT_INFO,
+  // future products...
+};

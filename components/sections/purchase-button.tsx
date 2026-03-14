@@ -7,6 +7,7 @@ import { LuChevronRight, LuLoader } from "react-icons/lu";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { checkout } from "@/lib/checkout";
 
 gsap.registerPlugin(useGSAP);
 
@@ -17,8 +18,7 @@ const PurchaseButton = () => {
 
   const handlePurchaseClick = async () => {
     setIsPressed(true);
-    //TODO: Implement purchase logic
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await checkout();
     setIsPressed(false);
   };
 

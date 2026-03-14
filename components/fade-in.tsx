@@ -3,10 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type FadeInProps = {
   children: React.ReactNode;
@@ -19,36 +16,45 @@ type FadeInProps = {
 export const FadeIn = ({
   children,
   vars = {},
-  start = "top 90%",
   className,
   targetChildren = false,
 }: FadeInProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const target = targetChildren
-      ? containerRef.current?.children
-      : containerRef.current;
+    const el = containerRef.current;
+    const target = targetChildren ? el?.children : el;
 
-    if (!target) return;
+    if (!el || !target) return;
 
     gsap.set(target, {
       opacity: 0,
       y: 60,
     });
 
-    gsap.to(target, {
+    const tween = gsap.to(target, {
       duration: 0.8,
       opacity: 1,
       ease: "power3.out",
       y: 0,
       stagger: 0.2,
+      paused: true,
       ...vars,
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start,
-      },
     });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0].isIntersecting) return;
+        tween.play();
+        observer.disconnect();
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0 }
+    );
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+    };
   });
   return (
     <div ref={containerRef} className={clsx(className)}>

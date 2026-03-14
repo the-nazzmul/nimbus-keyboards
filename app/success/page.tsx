@@ -33,7 +33,7 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
   // Handle missing session ID
   if (!sessionId) {
     return (
-      <div className="relative mt-20 min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      <div className="relative mt-20 min-h-screen bg-linear-to-br from-gray-50 to-white">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-red-100">
@@ -41,7 +41,7 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
             </div>
             <h1 className="font-bold-slanted mt-8 text-4xl text-gray-900 sm:text-5xl lg:text-6xl">
               <span className="block tracking-tight uppercase">Something</span>
-              <span className="block bg-gradient-to-r from-red-500 to-red-600 bg-clip-text tracking-tight text-transparent uppercase">
+              <span className="block bg-linear-to-r from-red-500 to-red-600 bg-clip-text tracking-tight text-transparent uppercase">
                 Went Wrong
               </span>
             </h1>
@@ -50,7 +50,7 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
             </p>
             <Link
               href="/"
-              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#01A7E1] to-[#0196C9] px-6 py-3 font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#01A7E1]/25"
+              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-[#01A7E1] to-[#0196C9] px-6 py-3 font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#01A7E1]/25"
             >
               Return Home
               <LuChevronRight className="h-5 w-5" />
@@ -74,20 +74,20 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
     };
 
     return (
-      <div className="relative mt-20 min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      <div className="relative mt-20 min-h-screen bg-linear-to-br from-gray-50 to-white">
         <FadeIn
           targetChildren
           className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8"
         >
           {/* Success Icon and Header */}
           <div className="text-center">
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-[#01A7E1] to-[#0196C9]">
+            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-linear-to-r from-[#01A7E1] to-[#0196C9]">
               <LuCheck className="h-10 w-10 text-white" />
             </div>
 
             <h1 className="font-bold-slanted mt-8 text-4xl text-gray-900 sm:text-5xl lg:text-6xl">
               <span className="block tracking-tight uppercase">Payment</span>
-              <span className="block bg-gradient-to-r from-[#01A7E1] to-[#0196C9] bg-clip-text tracking-tight text-transparent uppercase">
+              <span className="block bg-linear-to-r from-[#01A7E1] to-[#0196C9] bg-clip-text tracking-tight text-transparent uppercase">
                 Successful
               </span>
             </h1>
@@ -196,7 +196,7 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
           <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/"
-              className="group relative flex transform-gpu cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-gradient-to-r from-[#01A7E1] to-[#0196C9] px-8 py-3 font-semibold text-white transition-all duration-300 will-change-transform hover:shadow-lg hover:shadow-[#01A7E1]/25 focus:ring-2 focus:ring-[#01A7E1] focus:ring-offset-2 focus:outline-none"
+              className="group relative flex transform-gpu cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-linear-to-r from-[#01A7E1] to-[#0196C9] px-8 py-3 font-semibold text-white transition-all duration-300 will-change-transform hover:shadow-lg hover:shadow-[#01A7E1]/25 focus:ring-2 focus:ring-[#01A7E1] focus:ring-offset-2 focus:outline-none"
             >
               <span className="font-bold-slanted relative z-10 flex items-center gap-2 text-lg uppercase">
                 Continue Shopping
@@ -223,7 +223,7 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
     console.error("Error retrieving Stripe session:", error);
 
     return (
-      <div className="relative mt-20 min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      <div className="relative mt-20 min-h-screen bg-linear-to-br from-gray-50 to-white">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-red-100">
@@ -231,7 +231,7 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
             </div>
             <h1 className="font-bold-slanted mt-8 text-4xl text-gray-900 sm:text-5xl lg:text-6xl">
               <span className="block tracking-tight uppercase">Something</span>
-              <span className="block bg-gradient-to-r from-red-500 to-red-600 bg-clip-text tracking-tight text-transparent uppercase">
+              <span className="block bg-linear-to-r from-red-500 to-red-600 bg-clip-text tracking-tight text-transparent uppercase">
                 Went Wrong
               </span>
             </h1>
@@ -240,7 +240,7 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
             </p>
             <Link
               href="/"
-              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#01A7E1] to-[#0196C9] px-6 py-3 font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#01A7E1]/25"
+              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-[#01A7E1] to-[#0196C9] px-6 py-3 font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#01A7E1]/25"
             >
               Return Home
               <LuChevronRight className="h-5 w-5" />

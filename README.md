@@ -8,7 +8,7 @@ SwitchBliss Keyboards is a Next.js e-commerce site showcasing the Vapor75: hot-s
 
 ## Screenshot
 
-![SwitchBliss Keyboards]("/public/screenshot.png")
+![SwitchBliss Keyboards](public/screenshot.png)
 
 ## Tech Stack
 
@@ -28,7 +28,7 @@ SwitchBliss Keyboards is a Next.js e-commerce site showcasing the Vapor75: hot-s
 1. **Clone and install dependencies**
 
    ```bash
-   git clone <your-repo-url>
+   git clone git@github.com:the-nazzmul/switchBliss-keyboards.git
    cd switch-bliss-keyboards
    npm install
    # or

@@ -8,7 +8,7 @@ SwitchBliss Keyboards is a Next.js e-commerce site showcasing the Vapor75: hot-s
 
 ## Screenshot
 
-![SwitchBliss Keyboards](/screenshot.png)
+![SwitchBliss Keyboards]("/public/screenshot.png")
 
 ## Tech Stack
 

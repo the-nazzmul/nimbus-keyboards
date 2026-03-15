@@ -17,9 +17,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 export const metadata: Metadata = {
-  title: "Order Confirmation | SwitchBliss Keyboards",
+  title: "Order Confirmation",
   description:
-    "Thank you for your purchase! Your order has been confirmed and is being processed.",
+    "Your Vapor75 order is confirmed. Thank you for choosing SwitchBliss. We'll send shipping details soon.",
+  robots: { index: false, follow: true },
 };
 
 interface SuccessPageProps {
